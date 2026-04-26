@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duo · 2026及之后 · 星象预测地图</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1814;
+  --ink-soft: #3d3830;
+  --ink-faint: #6b6358;
+  --paper: #f4ede0;
+  --paper-warm: #ebe1cf;
+  --gold: #8a6d3b;
+  --gold-bright: #b8924f;
+  --rust: #8b4513;
+  --sage: #5a6b4a;
+  --sage-deep: #3e4a32;
+  --plum: #5d3a4a;
+  --indigo: #2c3e50;
+  --line: rgba(26, 24, 20, 0.12);
+  --line-strong: rgba(26, 24, 20, 0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  background-image: 
+    radial-gradient(ellipse at top left, rgba(184, 146, 79, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(93, 58, 74, 0.06), transparent 50%);
+  color: var(--ink);
+  font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  font-weight: 400;
+  line-height: 1.7;
+  min-height: 100vh;
+  padding: 60px 40px;
+  overflow-x: hidden;
+}
+
+/* Paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(26, 24, 20, 0.015) 1px,
+      transparent 2px,
+      transparent 60px
+    );
+  z-index: 1;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================== HEADER ==================== */
+.frontispiece {
+  text-align: center;
+  padding: 40px 0 80px;
+  position: relative;
+}
+
+.frontispiece::after {
+  content: '';
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 30px;
+  background: var(--ink-faint);
+}
+
+.eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.title-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 8vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.title-sub {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+  margin-bottom: 30px;
+}
+
+.dedication {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+
+.dedication strong {
+  font-style: normal;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+}
+
+/* ==================== SECTION ==================== */
+section {
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 56px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.section-title-wrap {
+  flex: 1;
+}
+
+.section-kicker {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+/* ==================== TIMELINE (主线图) ==================== */
+.timeline-wrap {
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 50px 40px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-wrap::before {
+  content: '★';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 12px;
+  color: var(--gold);
+  font-size: 16px;
+}
+
+.timeline {
+  position: relative;
+  padding: 30px 0;
+}
+
+.timeline-axis {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ink-faint) 10%, var(--ink-faint) 90%, transparent);
+}
+
+.timeline-points {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+  align-items: center;
+}
+
+.tp {
+  position: relative;
+  text-align: center;
+  padding: 20px 4px;
+}
+
+.tp-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink-soft);
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.tp.peak .tp-dot {
+  width: 18px;
+  height: 18px;
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(184, 146, 79, 0.2);
+}
+
+.tp.critical .tp-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--rust);
+  border-color: var(--rust);
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
+}
+
+.tp-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.tp.peak .tp-year { color: var(--gold); font-weight: 600; }
+.tp.critical .tp-year { color: var(--rust); font-weight: 600; }
+
+.tp-label {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+
+.timeline-legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ==================== YEAR CARDS ==================== */
+.year-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 50px;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.year-card:first-of-type { border-top: none; }
+
+.year-marker {
+  position: relative;
+}
+
+.year-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.year-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
+.year-meta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.year-meta-item {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  margin-bottom: 4px;
+}
+
+.year-meta-item strong {
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.year-content {
+  padding-top: 6px;
+}
+
+.year-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--sage-deep);
+  line-height: 1.3;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.year-body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.year-body strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Layered details */
+.layer-list {
+  margin-top: 20px;
+  padding: 20px 24px;
+  background: rgba(184, 146, 79, 0.05);
+  border-left: 2px solid var(--gold);
+}
+
+.layer-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.layer-item:not(:last-child) {
+  border-bottom: 1px dashed var(--line);
+}
+
+.layer-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.layer-desc {
+  color: var(--ink-soft);
+}
+
+/* Manifestations */
+.manifest {
+  margin-top: 20px;
+}
+
+.manifest-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+.manifest ul {
+  list-style: none;
+  padding: 0;
+}
+
+.manifest li {
+  position: relative;
+  padding: 4px 0 4px 24px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.manifest li::before {
+  content: '◇';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  color: var(--gold);
+  font-size: 10px;
+}
+
+/* Risk callout */
+.caution {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--rust);
+  border-radius: 2px;
+  background: rgba(139, 69, 19, 0.04);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  position: relative;
+}
+
+.caution::before {
+  content: '⚠';
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: var(--paper);
+  padding: 0 8px;
+  color: var(--rust);
+  font-size: 14px;
+}
+
+.caution-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--rust);
+  margin-right: 8px;
+}
+
+/* ==================== ARC SECTION ==================== */
+.arc-narrative {
+  background: var(--paper-warm);
+  padding: 50px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.arc-narrative::before,
+.arc-narrative::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--gold);
+}
+
+.arc-narrative::before {
+  top: 12px;
+  left: 12px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.arc-narrative::after {
+  bottom: 12px;
+  right: 12px;
+  border-left: none;
+  border-top: none;
+}
+
+.arc-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--sage-deep);
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.arc-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.arc-stage {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.arc-stage:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.arc-stage-years {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 10px;
+}
+
+.arc-stage-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.arc-stage-desc {
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1.6;
+}
+
+/* ==================== FINAL ==================== */
+.coda {
+  text-align: center;
+  padding: 80px 20px 40px;
+  margin-top: 60px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.coda::before {
+  content: '✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 16px;
+  color: var(--gold);
+  font-size: 14px;
+}
+
+.coda-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.coda-sign {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px;
+  color: var(--ink-faint);
+  letter-spacing: 0.3em;
+}
+
+/* ==================== HONESTY NOTE ==================== */
+.honesty-note {
+  background: rgba(44, 62, 80, 0.04);
+  border-left: 3px solid var(--indigo);
+  padding: 20px 24px;
+  margin: 40px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.honesty-note strong {
+  font-style: normal;
+  color: var(--indigo);
+  letter-spacing: 0.1em;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  body { padding: 40px 20px; }
+  .year-card { grid-template-columns: 1fr; gap: 20px; }
+  .timeline-points { grid-template-columns: repeat(7, 1fr); font-size: 11px; }
+  .tp-year { font-size: 16px; }
+  .tp-label { font-size: 10px; }
+  .arc-stages { grid-template-columns: 1fr; }
+  .arc-stage:not(:last-child)::after { display: none; }
+  .layer-item { grid-template-columns: 1fr; gap: 4px; }
+  .section-header { flex-direction: column; gap: 8px; }
+  .section-num { font-size: 40px; }
+  .section-title { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ============= FRONTISPIECE ============= -->
+<header class="frontispiece">
+  <div class="eyebrow">A Personal Astrological Cartography</div>
+  <h1 class="title-main">2026 & Beyond</h1>
+  <div class="title-sub">星 象 预 测 地 图</div>
+  <div class="dedication">For <strong>Duo</strong> · 1990.01.18 · 山西万荣 · 12:00</div>
+</header>
+
+<!-- ============= 总览主线 ============= -->
+<section>
+  <div class="section-header">
+    <div class="section-num">I</div>
+    <div class="section-title-wrap">
+      <div class="section-kicker">The Seven-Year Map</div>
+      <div class="section-title">七年主线 · 你在哪条路上</div>
+    </div>
+  </div>
+
+  <div class="timeline-wrap">
+    <div class="timeline">
+      <div class="timeline-axis"></div>
+      <div class="timeline-points">
+        <div class="tp critical">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2026</div>
+          <div class="tp-label">临界<br/>自我重铸</div>
+        </div>
+        <div class="tp">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2027</div>
+          <div class="tp-label">显化<br/>初见果实</div>
+        </div>
+        <div class="tp peak">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2028</div>
+          <div class="tp-label">高峰<br/>事业兑现</div>
+        </div>
+        <div class="tp peak">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2029</div>
+          <div class="tp-label">跃升<br/>关系突破</div>
+        </div>
+        <div class="tp">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2030</div>
+          <div class="tp-label">整合<br/>杠杆放大</div>
+        </div>
+        <div class="tp">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2031</div>
+          <div class="tp-label">沉淀<br/>深度构建</div>
+        </div>
+        <div class="tp critical">
+          <div class="tp-dot"></div>
+          <div class="tp-year">2032</div>
+          <div class="tp-label">转折<br/>新周期前夜</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--rust);"></div>
+        <span>结构性转折点</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--gold);"></div>
+        <span>显化高峰期</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--paper); border: 1.5px solid var(--ink-soft);"></div>
+        <span>过渡期</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="honesty-note">
+    <strong>关于这张图 · </strong>这条主线基于你的本命盘（上升白羊·MC摩羯·太阳摩羯27°·月亮天秤）和2026-2032年外行星的实际位置推导。星象周期是天文事实，但"显化"的判断是占星框架内的延展，不是预言。你看的是一张<strong>能量地形图</strong>，不是导航。
+  </div>
+</section>
+
+<!-- ============= 逐年展开 ============= -->
+<section>
+  <div class="section-header">
+    <div class="section-num">II</div>
+    <div class="section-title-wrap">
+      <div class="section-kicker">Year by Year</div>
+      <div class="section-title">逐年展开 · 七个章节</div>
+    </div>
+  </div>
+
+  <!-- 2026 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2026</div>
+      <div class="year-tag">The Critical</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>临界·重铸</div>
+        <div class="year-meta-item"><strong>主显化</strong>自我·家庭</div>
+        <div class="year-meta-item"><strong>事业</strong>蓄势·非显化</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"被推着成熟，生活有大事，事业像在等。"</div>
+      <div class="year-body">
+        三个不同时间尺度的周期同步换挡——<strong>土星过第一宫深化</strong>（29.5年周期的中段）、<strong>木星第三次回归落第四宫</strong>（12年周期的开启）、<strong>冥王水瓶在第十一宫深化</strong>（20年周期的早期）。这是2026年成为"临界点"的真正原因：不是因为这一年特别好，而是因为<strong>三个周期的转折同时压在一起</strong>。
+      </div>
+      <div class="layer-list">
+        <div class="layer-item">
+          <div class="layer-name">第一层 · 土</div>
+          <div class="layer-desc">你这个人作为主体被重铸——身体、形象、自我感、行动模式都会被"硬化"。29.5年一次。</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-name">第二层 · 木</div>
+          <div class="layer-desc">12年一次的扩张窗口开启，落点在家庭根基——和Shiyou的代孕、居住、内在踏实感。</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-name">第三层 · 冥</div>
+          <div class="layer-desc">"从体系内的人 → 能影响体系的人"这个长期身份重构在地基浇筑期。</div>
+        </div>
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>身体层面会出现"账单"——必须建立新的能量管理系统</li>
+          <li>过去某个"扮演的样子"撑不下去，新的真实呈现方式浮现</li>
+          <li>家庭维度的实质进展（代孕推进、居住安顿、"我有家了"的体感）</li>
+          <li>事业上不会有"高光时刻"，但会有"我在变成对的人"的内在确定感</li>
+        </ul>
+      </div>
+      <div class="caution">
+        <span class="caution-label">注意 · </span>白羊上升+MC摩羯的人，本能想"硬冲"。但土星过一宫的核心课题是"<strong>学会用更经济的方式行动</strong>"——这一年硬冲的边际收益会下降。
+      </div>
+    </div>
+  </article>
+
+  <!-- 2027 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2027</div>
+      <div class="year-tag">The Emergence</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>显化·初见</div>
+        <div class="year-meta-item"><strong>主显化</strong>价值·创造</div>
+        <div class="year-meta-item"><strong>事业</strong>开始结果</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"开始看到果子。"</div>
+      <div class="year-body">
+        <strong>土星进入金牛座（第二宫）</strong>——价值与资源的硬核构建期。<strong>木星离开巨蟹进入狮子座（第五宫）</strong>——创造力与个人表达的扩张。这是2026年播种之后，第一个开始显化的年份。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>收入结构、长期资产、定价权层面有结构性变化</li>
+          <li>"作品感"增强——你做的事开始有清晰的署名权</li>
+          <li>个人品牌/行业声音开始形成</li>
+          <li>对"我的价值是什么"有更精确的答案</li>
+        </ul>
+      </div>
+      <div class="caution">
+        <span class="caution-label">注意 · </span>第二宫土星会让"价值兑现"过程变慢、变重。不要期待"快速变现"——这一年是<strong>慢慢把价值固化</strong>，不是套现年。
+      </div>
+    </div>
+  </article>
+
+  <!-- 2028 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2028</div>
+      <div class="year-tag">The Peak</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>高峰·兑现</div>
+        <div class="year-meta-item"><strong>主显化</strong>事业·系统</div>
+        <div class="year-meta-item"><strong>事业</strong>大显化年 ★</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"终于到了。"</div>
+      <div class="year-body">
+        <strong>木星进入处女座（第六宫）</strong>——组织能力与执行系统的扩张。<strong>土星深化金牛座（第二宫）</strong>——价值兑现进入硬核阶段。这一年和Chowbus的IPO目标完全吻合。星象上是<strong>2026-2032七年里事业显化最强的一年</strong>，不是因为"运气好"，而是因为前面所有周期累积到这里释放。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>管理大团队、复杂系统、规模化能力的兑现</li>
+          <li>事业上的关键里程碑（IPO、重大产品、行业地位）</li>
+          <li>"产品总监 → AI餐饮SaaS定义者"的身份跃迁完成度大幅提升</li>
+          <li>价值结构进入新量级——但需要扛得住</li>
+        </ul>
+      </div>
+      <div class="caution">
+        <span class="caution-label">注意 · </span>显化高峰也是<strong>系统压力高峰</strong>。第六宫木星的暗面是"被工作系统淹没"——身体、团队、流程的承载力会被极限测试。2026-2027年准备得越扎实，2028年越扛得住。
+      </div>
+    </div>
+  </article>
+
+  <!-- 2029 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2029</div>
+      <div class="year-tag">The Recognition</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>跃升·被看见</div>
+        <div class="year-meta-item"><strong>主显化</strong>关系·伙伴</div>
+        <div class="year-meta-item"><strong>事业</strong>外显年 ★</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"外界来找我了。"</div>
+      <div class="year-body">
+        <strong>木星进入天秤座（第七宫）</strong>——七年一次的"关系大红利期"开启。这是2026-2032里关系层面最强的一年，含义包括：重要合作主动出现、行业地位被外界承认、伴侣关系深化、伙伴型贵人登场。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>行业内"被看见"——从"在做事"到"被认为是某个领域的代表"</li>
+          <li>重要合作关系的形成（资本、战略合作、行业联盟）</li>
+          <li>伴侣关系进入新阶段——和Shiyou的承诺/家庭可能有重要节点</li>
+          <li>从"自己干"开始转向"和对的人一起干"</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2030 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2030</div>
+      <div class="year-tag">The Leverage</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>整合·杠杆</div>
+        <div class="year-meta-item"><strong>主显化</strong>资源·深度</div>
+        <div class="year-meta-item"><strong>事业</strong>放大年</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"我可以做更大的事了。"</div>
+      <div class="year-body">
+        <strong>木星进入天蝎座（第八宫）</strong>——深度共享、信任、长期资产、影响力杠杆。<strong>土星双子座（第三宫）</strong>——沟通与思想表达的硬核构建。整个2020s的累积在这一年开始进入"用杠杆放大"的阶段。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>资本层面、深度合作层面有杠杆型操作</li>
+          <li>影响力从"自己说话"扩展到"通过系统说话"</li>
+          <li>开始有能力做"大平台、大配置、大整合"</li>
+          <li>第三宫土星会让你的表达变得更精确、更有重量</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2031 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2031</div>
+      <div class="year-tag">The Depth</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>沉淀·深构</div>
+        <div class="year-meta-item"><strong>主显化</strong>愿景·哲学</div>
+        <div class="year-meta-item"><strong>事业</strong>稳态期</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"开始想更远的事。"</div>
+      <div class="year-body">
+        <strong>木星进入射手座（第九宫）</strong>——愿景、远方、哲学、长期意义。前几年高速显化之后，这一年的能量类型转向<strong>"为什么"而不是"做什么"</strong>。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>事业进入稳态——不再是"冲刺"，而是"维持高度"</li>
+          <li>对"我做这一切到底是为了什么"会反复追问</li>
+          <li>可能出现新的兴趣、新的远方（学术、写作、教育、跨地域）</li>
+          <li>从"做产品"扩展到"做思想"</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2032 -->
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big">2032</div>
+      <div class="year-tag">The Threshold</div>
+      <div class="year-meta">
+        <div class="year-meta-item"><strong>主调</strong>转折·前夜</div>
+        <div class="year-meta-item"><strong>主显化</strong>结构·重排</div>
+        <div class="year-meta-item"><strong>事业</strong>新周期前夜 ★</div>
+      </div>
+    </div>
+    <div class="year-content">
+      <div class="year-headline">"上一个周期的尾声，下一个周期的前夜。"</div>
+      <div class="year-body">
+        <strong>天王星对冲</strong>临近（你42岁的著名"中年节点"在2032附近开启）。<strong>木星进入摩羯座（你的太阳所在）</strong>——12年一次的"自我能量回归"。这是2026年开启的七年周期的<strong>结构性收尾</strong>。
+      </div>
+      <div class="manifest">
+        <div class="manifest-title">Possible Manifestations</div>
+        <ul>
+          <li>对2026-2031年构建的一切，开始做"结构性评估"</li>
+          <li>可能出现"是否要重新选择方向"的根本性追问</li>
+          <li>事业、关系、生活模式都会有重新洗牌的可能</li>
+          <li>不是危机，是<strong>下一个十年开始前的体检</strong></li>
+        </ul>
+      </div>
+      <div class="caution">
+        <span class="caution-label">注意 · </span>天王星对冲是<strong>42岁前后的著名星象节点</strong>，被很多占星师视为"真正的中年节点"（比土星回归更深）。这不是2026-2031年的延续，是<strong>新一轮的开启</strong>——所以放在这里作为终点 + 起点。
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============= 三段叙事弧 ============= -->
+<section>
+  <div class="section-header">
+    <div class="section-num">III</div>
+    <div class="section-title-wrap">
+      <div class="section-kicker">The Three Acts</div>
+      <div class="section-title">三段叙事 · 整体结构</div>
+    </div>
+  </div>
+
+  <div class="arc-narrative">
+    <div class="arc-quote">
+      "如果把这七年看成一部三幕剧——<br/>
+      2026是序幕，2028-2029是高潮，2032是落幕同时也是新剧的序幕。"
+    </div>
+
+    <div class="arc-stages">
+      <div class="arc-stage">
+        <div class="arc-stage-years">2026 — 2027</div>
+        <div class="arc-stage-name">第一幕 · 准备</div>
+        <div class="arc-stage-desc">
+          自我重铸<br/>家庭奠基<br/>价值固化<br/><br/>
+          <em>"主体准备期"</em>
+        </div>
+      </div>
+      <div class="arc-stage">
+        <div class="arc-stage-years">2028 — 2030</div>
+        <div class="arc-stage-name">第二幕 · 显化</div>
+        <div class="arc-stage-desc">
+          事业兑现<br/>关系跃升<br/>杠杆放大<br/><br/>
+          <em>"成果释放期"</em>
+        </div>
+      </div>
+      <div class="arc-stage">
+        <div class="arc-stage-years">2031 — 2032</div>
+        <div class="arc-stage-name">第三幕 · 转折</div>
+        <div class="arc-stage-desc">
+          愿景深化<br/>结构重排<br/>新周期前夜<br/><br/>
+          <em>"反思与重启期"</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 三个核心建议 ============= -->
+<section>
+  <div class="section-header">
+    <div class="section-num">IV</div>
+    <div class="section-title-wrap">
+      <div class="section-kicker">Three Anchors</div>
+      <div class="section-title">三个锚点 · 给整个七年</div>
+    </div>
+  </div>
+
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big" style="font-size: 56px; color: var(--gold);">壹</div>
+      <div class="year-tag">主体先于成果</div>
+    </div>
+    <div class="year-content">
+      <div class="year-body">
+        2026-2027年的所有功夫，都在做一件事：<strong>把"做事的Duo"重铸成"定义的Duo"</strong>。这两年不要急着摘果子，但要把树根扎深、把树干养粗。<strong>2028年能不能扛住事业高峰，取决于2026-2027年身体和内核扛得住多重</strong>。
+      </div>
+    </div>
+  </article>
+
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big" style="font-size: 56px; color: var(--gold);">贰</div>
+      <div class="year-tag">家是事业的容器</div>
+    </div>
+    <div class="year-content">
+      <div class="year-body">
+        木星回归四宫意味着：<strong>家庭维度的稳定，是事业能扩张多远的物理上限</strong>。和Shiyou的关系、代孕的进展、居住的安顿——这些不是"私事"，是<strong>2028-2030事业大显化期的容器</strong>。容器多大，能装多大的成就。
+      </div>
+    </div>
+  </article>
+
+  <article class="year-card">
+    <div class="year-marker">
+      <div class="year-big" style="font-size: 56px; color: var(--gold);">叁</div>
+      <div class="year-tag">远方比眼前重要</div>
+    </div>
+    <div class="year-content">
+      <div class="year-body">
+        冥王在十一宫的20年周期意味着：你真正在走的路，<strong>不是"做好Chowbus"，而是"成为AI时代某个领域的定义者"</strong>。Chowbus是这条路上的载体，不是终点。这个判断会让你在2028年高峰时不至于满足，在2032年转折时不至于慌乱。
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============= 最终诚实声明 ============= -->
+<div class="honesty-note" style="margin-top: 60px;">
+  <strong>最后的诚实 · </strong>这张地图基于你的本命盘和未来七年的外行星周期推导。<strong>天文事实是真的</strong>——所有行星位置、回归时间、相位关系都可以用任何天文软件验证。<strong>"会发生什么"的判断是占星框架内的延展</strong>——是基于传统占星符号系统的合理推论，但不是预言。星象不能让事情发生，星象只是给你提供一个"叙事容器"——让你在做艰难决定时有"我在主线上"的踏实感，在面对未知时有"远方有意义"的方向感。<strong>真正让事情发生的，永远是你做的事。</strong>
+</div>
+
+<!-- ============= CODA ============= -->
+<div class="coda">
+  <div class="coda-text">
+    "你不是在求一年的好运。<br/>
+    你在走一条和星象对齐的七年主线。<br/>
+    这条路真正的价值，不是终点的高度，<br/>
+    而是你成为的那个人。"
+  </div>
+  <div class="coda-sign">— 森 · For Duo</div>
+</div>
+
+</div>
+
+</body>
+</html>
